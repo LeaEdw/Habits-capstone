@@ -6,23 +6,22 @@ export const Register = () => {
   const [user, setUser] = useState({
     email: "",
     username: "",
-    cohort: 0,
+    phoneNumber: "",
+    birthdate: "",
   });
   let navigate = useNavigate();
 
   const registerNewUser = () => {
     const newUser = {
       ...user,
-      cohort: parseInt(user.cohort),
     };
 
     createUser(newUser).then((createdUser) => {
       if (createdUser.hasOwnProperty("id")) {
         localStorage.setItem(
-          "learning_user",
+          "habits_user",
           JSON.stringify({
             id: createdUser.id,
-            staff: createdUser.isStaff,
           })
         );
 
@@ -53,7 +52,7 @@ export const Register = () => {
   return (
     <main className="container-login">
       <form className="form-login" onSubmit={handleRegister}>
-        <h1 className="header">Habit Tracker App</h1>
+        <h1 className="header">Habit Tracker</h1>
         <h2>Please Register</h2>
         <fieldset className="form-group">
           <div>
@@ -83,11 +82,13 @@ export const Register = () => {
         <fieldset className="form-group">
           <div>
             <input
+            className="form-control"
               onChange={updateUser}
-              type="number"
+              type="tel"
               id="phoneNumber"
-              className="form-control"
+              name="phoneNumber"
               placeholder="Phone Number"
+              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
               required
             />
           </div>
