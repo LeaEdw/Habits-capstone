@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import { createUser, getUserByEmail } from "../../services/userService";
 
 export const Register = () => {
   const [user, setUser] = useState({
-    email: "",
     username: "",
+    email: "",
     phoneNumber: "",
     birthdate: "",
   });
@@ -82,13 +83,13 @@ export const Register = () => {
         <fieldset className="form-group">
           <div>
             <input
-            className="form-control"
+              className="form-control"
               onChange={updateUser}
               type="tel"
               id="phoneNumber"
               name="phoneNumber"
               placeholder="Phone Number"
-              pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+              maxLength="12"
               required
             />
           </div>
@@ -98,9 +99,9 @@ export const Register = () => {
             <input
               className="form-control"
               type="date"
-              id="start"
-              name="trip-start"
-              value="Birthdate"
+              id="birthdate"
+              name="birthdate"
+              onChange={updateUser}
             />
           </div>
         </fieldset>
