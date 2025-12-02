@@ -1,0 +1,50 @@
+.pageContainer {
+  display: flex;
+  flex-direction: row;
+}
+.userGreeting {
+  font-size: 2rem;
+  line-height: 1.5rem;
+  text-align: left;
+}
+
+.taskData {
+  padding: 20px 70px;
+}
+.left-sideItems > .welcomeProgress {
+  display: flex;
+  flex-direction: column;
+  margin: 5rem;
+  border: 1px solid var(--outline);
+  border-radius: 10px;
+  padding: 1rem 0rem 0rem 1rem;
+  box-shadow: 1px 2px 5px lightgray;
+  background-color: var(--offWhite);
+  padding: 2rem;
+}
+
+.taskList-container {
+  display: flex;
+  flex-direction: column;
+  margin: 5rem;
+  border: 1px solid var(--outline);
+  border-radius: 10px;
+  padding: 1rem 0rem 0rem 1rem;
+  box-shadow: 1px 2px 5px lightgray;
+  background-color: var(--offWhite);
+  padding: 2rem;
+}
+
+.left-sideItems {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons-container > button {
+  margin: 10px;
+}

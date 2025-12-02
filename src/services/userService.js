@@ -3,6 +3,11 @@ export const getUserByEmail = async (email) => {
   return await res.json()
 }
 
+export const getUserById = async (id) => {
+  const res = await fetch(`http://localhost:8088/users/${id}`)
+  return await res.json()
+}
+
 export const createUser = async (user) => {
   const res = await fetch("http://localhost:8088/users", {
     method: "POST",
