@@ -3,6 +3,8 @@ import { getUserById } from "../../services/userService";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Logout } from "../Auth/Logout";
+import { CreateNewButton } from "../Buttons/CreateNewButton";
+import { EditTaskButton } from "../Buttons/EditButton";
 
 
 export const Home = () => {
@@ -26,8 +28,8 @@ const userObject = JSON.parse(localStorage.getItem("habits_user"))
             <p className="taskData">There's no task data</p>
           </section>
           <section className="buttons-container">
-            <Link to={"/new_post"}><button className="newTask-btn">Create a New Task</button></Link>
-            <Link to={"/edit_post"}><button className="editTask-btn">Edit Existing Tasks</button></Link>
+            <CreateNewButton/>
+            <EditTaskButton/>
             <Logout />
           </section>
         </div>
