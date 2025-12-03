@@ -1,0 +1,73 @@
+.task-form-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding: 40px 20px;
+  background-color: #f4f4f9;
+}
+
+.task-form-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.task-form-container fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.newTask-name,
+.categories-dropdown {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.newTask-name:focus,
+.categories-dropdown:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+/* Add this to your existing Task.css */
+
+.button-group {
+  /* Inherit the max-width and center it if it's placed outside the card */
+  max-width: 500px; 
+  width: 100%;
+  margin: 20px auto 0 auto; /* Add margin above the buttons and center the group */
+
+  /* Flexbox for spacing and alignment */
+  display: flex;
+  justify-content: space-around; /* Puts maximum space between the two buttons */
+  gap: 20px; /* Ensures minimum space between buttons if alignment changes */
+}
+
+/* Optional: To make the Cancel button stand out less than the Save button */
+.cancel-btn {
+  /* Assuming CancelButton uses a class called 'cancel-btn' */
+  background-color: #d5d5d5; /* A gray/secondary color */
+}
+
+.cancel-btn:hover {
+  background-color: #5a6268;
+}

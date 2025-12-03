@@ -36,16 +36,18 @@ export const Login = () => {
           <h1>Habit Tracker</h1>
           <h2>Let's get to tracking!</h2>
           <fieldset>
-            <div className="form-group">
+            <div className="form-floating mb-3">
               <input
                 type="email"
                 value={email}
                 onChange={(evt) => set(evt.target.value)}
                 className="form-control"
-                placeholder="Enter your email address..."
+                id="floatingInput"
+                placeholder="name@example.com"
                 required
                 autoFocus
               />
+              <label htmlFor="floatingInput">Email Address</label>
             </div>
           </fieldset>
           <fieldset>

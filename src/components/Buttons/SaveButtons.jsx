@@ -1,13 +1,10 @@
 import "./Button.css";
 import { useNavigate } from "react-router-dom";
 
-export const SaveButton = () => {
-  const navigate = useNavigate();
-
-  const handleSave = () => navigate("/home");
+export const SaveButton = ({onClick}) => {
   return (
     <>
-      <button className="save-btn" onClick={handleSave}>
+      <button className="save-btn" onClick={onClick}>
         Save
       </button>
     </>

@@ -10,5 +10,5 @@ export const CancelButton = () => {
       navigate("/home");
     }
   };
-  return <button onClick={cancelConfirmation}>Cancel</button>;
+  return <button className="cancel-btn" onClick={cancelConfirmation}>Cancel</button>;
 };
