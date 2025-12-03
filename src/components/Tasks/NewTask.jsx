@@ -1,7 +1,13 @@
+import { CancelButton } from "../Buttons/CancelButton"
+import { SaveButton } from "../Buttons/SaveButtons"
+
 export const NewTask = () => {
+
     return (
         <>
-            <p>This page will display a form where users can create and post new tasks.</p>
+        <p>The form to create a new task will be here</p>
+            <CancelButton/>
+            <SaveButton />
         </>
     )
 }

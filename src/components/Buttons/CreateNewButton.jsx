@@ -1,5 +1,10 @@
+import { Link } from "react-router-dom";
+import "./Button.css"
+
 export const CreateNewButton = () => {
-    return (
-        <button>Create New Task</button>
-    )
-}
+  return (
+    <Link to={"/new_post"}>
+      <button className="newTask-btn">Create a New Task</button>
+    </Link>
+  );
+};
