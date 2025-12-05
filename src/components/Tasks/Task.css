@@ -48,26 +48,42 @@ h1 {
   outline: none;
 }
 
-/* Add this to your existing Task.css */
-
 .button-group {
-  /* Inherit the max-width and center it if it's placed outside the card */
-  max-width: 500px; 
+  max-width: 500px;
   width: 100%;
-  margin: 20px auto 0 auto; /* Add margin above the buttons and center the group */
+  margin: 20px auto 0 auto;
 
-  /* Flexbox for spacing and alignment */
   display: flex;
-  justify-content: space-around; /* Puts maximum space between the two buttons */
-  gap: 20px; /* Ensures minimum space between buttons if alignment changes */
+  justify-content: space-around;
+  gap: 20px;
 }
 
-/* Optional: To make the Cancel button stand out less than the Save button */
 .cancel-btn {
-  /* Assuming CancelButton uses a class called 'cancel-btn' */
-  background-color: #d5d5d5; /* A gray/secondary color */
+  background-color: #d5d5d5;
 }
 
 .cancel-btn:hover {
   background-color: #5a6268;
+}
+
+.tasklist-container {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
+  font-size: 16px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.task-text {
+  padding-left: 10px;
+}
+
+.task-edit {
+  accent-color: #5a6268;
+}
+
+.task-edit:hover {
+  accent-color: #5a6268;
 }
