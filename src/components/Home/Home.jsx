@@ -6,9 +6,11 @@ import { CreateNewButton } from "../Buttons/CreateNewButton";
 import { EditTaskButton } from "../Buttons/EditButton";
 import { ViewStats } from "../Buttons/ViewStatsButton";
 import { TaskList } from "../Tasks/TaskList";
+import { getTaskByUserId } from "../../services/taskFetcher";
 
 export const Home = () => {
   const [user, setUser] = useState([]);
+  const [userTasks, setUserTasks] = useState([]);
 
   const userObject = JSON.parse(localStorage.getItem("habits_user"));
 
@@ -18,6 +20,29 @@ export const Home = () => {
     });
   }, []);
 
+  useEffect(() => {
+    getTaskByUserId(userObject.id).then((data) => {
+      setUserTasks(data);
+    });
+  }, [userTasks]);
+
+  const uncompletedTask = userTasks.filter(task => !task.completedStatus);
+  const uncompletedCount = uncompletedTask.length;
+
+  const hasTasks = userTasks.length > 0;
+  
+  const getTaskCountMessage = () => {
+    if (!hasTasks) {
+      return "It's a bit empty... create a task."
+    }
+
+    if (uncompletedCount === 0) {
+      return "All tasks complete. Great job!"
+    }
+
+    const taskWord = uncompletedCount === 1 ? "task" : "tasks";
+    return `You have ${uncompletedCount} ${taskWord} to complete`
+  }
 
   return (
     <>
@@ -25,17 +50,20 @@ export const Home = () => {
         <div className="left-sideItems">
           <section className="welcomeProgress">
             <h1 className="userGreeting">Hey, {user.username}</h1>
-            <p className="taskData">There's no task data</p>
+            <p>{hasTasks ? `Task Data will be here.` : "Psst. Create and complete some tasks to get data."}</p>
           </section>
           <section className="buttons-container">
             <CreateNewButton />
-            <EditTaskButton />
+            <EditTaskButton disabled={!hasTasks} />
             <Logout />
           </section>
         </div>
         <section className="taskList-container">
           <div className="taskField">
-            <TaskList />
+            <p className="taskData">
+              {getTaskCountMessage()}
+            </p>
+            <TaskList userTasks={userTasks} setUserTasks={setUserTasks} />
           </div>
           <ViewStats />
           {/* <button className="edit-lists"></button> */}
