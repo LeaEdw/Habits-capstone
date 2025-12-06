@@ -67,7 +67,7 @@ h1 {
 }
 
 .tasklist-container {
-  width: 100%;
+  width: 350px;
   padding: 12px 15px;
   border: 1px solid #ccc;
   border-radius: 15px;
@@ -86,4 +86,17 @@ h1 {
 
 .task-edit:hover {
   accent-color: #5a6268;
+}
+
+.tasktab {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.angle-button {
+    background-color: transparent;
+    
 }

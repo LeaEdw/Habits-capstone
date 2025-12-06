@@ -17,7 +17,7 @@ export const UpdateButton = () => {
   const handleUpdate = () => navigate("/home");
   return (
     <>
-      <button className="save-btn" onClick={handleUpdate}>
+      <button className="save-btn home-btn" onClick={handleUpdate}>
         Update
       </button>
     </>

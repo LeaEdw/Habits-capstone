@@ -7,6 +7,7 @@ import { EditTaskButton } from "../Buttons/EditButton";
 import { ViewStats } from "../Buttons/ViewStatsButton";
 import { TaskList } from "../Tasks/TaskList";
 import { getTaskByUserId } from "../../services/taskFetcher";
+import { TaskTab } from "../Tasks/TaskTab";
 
 export const Home = () => {
   const [user, setUser] = useState([]);
@@ -24,25 +25,25 @@ export const Home = () => {
     getTaskByUserId(userObject.id).then((data) => {
       setUserTasks(data);
     });
-  }, [userTasks]);
+  }, []);
 
-  const uncompletedTask = userTasks.filter(task => !task.completedStatus);
+  const uncompletedTask = userTasks.filter((task) => !task.completedStatus);
   const uncompletedCount = uncompletedTask.length;
 
   const hasTasks = userTasks.length > 0;
-  
+
   const getTaskCountMessage = () => {
     if (!hasTasks) {
-      return "It's a bit empty... create a task."
+      return "It's a bit empty... create a task.";
     }
 
     if (uncompletedCount === 0) {
-      return "All tasks complete. Great job!"
+      return "All tasks complete. Great job!";
     }
 
     const taskWord = uncompletedCount === 1 ? "task" : "tasks";
-    return `You have ${uncompletedCount} ${taskWord} to complete`
-  }
+    return `You have ${uncompletedCount} ${taskWord} to complete.`;
+  };
 
   return (
     <>
@@ -50,7 +51,11 @@ export const Home = () => {
         <div className="left-sideItems">
           <section className="welcomeProgress">
             <h1 className="userGreeting">Hey, {user.username}</h1>
-            <p>{hasTasks ? `Task Data will be here.` : "Psst. Create and complete some tasks to get data."}</p>
+            <p>
+              {hasTasks
+                ? `Task Data will be here.`
+                : "Psst. Create and complete some tasks to get data."}
+            </p>
           </section>
           <section className="buttons-container">
             <CreateNewButton />
@@ -59,13 +64,16 @@ export const Home = () => {
           </section>
         </div>
         <section className="taskList-container">
+          <div className="tasktab-container">
+            <TaskTab />
+          </div>
           <div className="taskField">
-            <p className="taskData">
-              {getTaskCountMessage()}
-            </p>
+            <p className="taskData">{getTaskCountMessage()}</p>
             <TaskList userTasks={userTasks} setUserTasks={setUserTasks} />
           </div>
-          <ViewStats />
+          <section className="buttons-container">
+            <ViewStats />
+          </section>
           {/* <button className="edit-lists"></button> */}
         </section>
       </div>
