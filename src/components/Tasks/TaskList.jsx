@@ -2,16 +2,10 @@ import { useEffect, useState } from "react";
 import "./Task.css";
 import { getTaskByUserId, updateTask } from "../../services/taskFetcher";
 
-export const TaskList = () => {
-  const [userTasks, setUserTasks] = useState([]);
+export const TaskList = ({ userTasks, onTaskCompletionChange }) => {
 
   const userObject = JSON.parse(localStorage.getItem("habits_user"));
 
-  useEffect(() => {
-    getTaskByUserId(userObject.id).then((data) => {
-      setUserTasks(data);
-    });
-  }, []);
 
   const handleCompletion = (task) => {
     const newStatus = !task.completedStatus;
@@ -34,10 +28,13 @@ export const TaskList = () => {
       completedStatus: newStatus,
     };
     updateTask(completedTask).then(() => {
-      getTaskByUserId(userObject.id).then((data) => {
-        setUserTasks(data);
-      });
-    });
+      if(onTaskCompletionChange) {
+        onTaskCompletionChange()
+      }
+    })
+    .catch(error => {
+      console.error("Task update failed:", error)
+    })
   };
 
   return (

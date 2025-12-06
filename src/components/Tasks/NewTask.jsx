@@ -59,6 +59,13 @@ export const NewTask = () => {
     }));
   };
 
+  const handleCategoryChange = (newCategoryId) => {
+    setTask((prevTask) => ({
+      ...prevTask,
+      categoryId: newCategoryId,
+    }))
+  }
+
   const createNewTask = (e) => {
     e.preventDefault();
 
@@ -95,7 +102,7 @@ export const NewTask = () => {
             required
           />
         </fieldset>
-        <CategoryDropdown onChange={handleNewTaskInput} />
+        <CategoryDropdown value={task.categoryId} onChange={handleCategoryChange}  />
       </div>
       <div className="button-group">
           <CancelButton />

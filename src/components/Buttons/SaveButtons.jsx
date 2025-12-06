@@ -1,20 +1,21 @@
 import "./Button.css";
-import { useNavigate } from "react-router-dom";
 
-export const SaveButton = ({onClick}) => {
+export const SaveButton = ({ onClick }) => {
   return (
     <>
-      <button className="save-btn" onClick={onClick}>
+      <button className="save-btn home-btn" onClick={onClick}>
         Save
       </button>
     </>
   );
 };
 
-export const UpdateButton = () => {
-  const navigate = useNavigate();
+export const UpdateButton = ({ onClick }) => {
 
-  const handleUpdate = () => navigate("/home");
+  const handleUpdate = async (e) => {
+    await onClick(e);
+
+  };
   return (
     <>
       <button className="save-btn home-btn" onClick={handleUpdate}>

@@ -1,4 +1,7 @@
+// CSS Imports
 import "./Home.css";
+
+// JSX Imports
 import { getUserById } from "../../services/userService";
 import { useEffect, useState } from "react";
 import { Logout } from "../Auth/Logout";
@@ -14,18 +17,23 @@ export const Home = () => {
   const [userTasks, setUserTasks] = useState([]);
 
   const userObject = JSON.parse(localStorage.getItem("habits_user"));
+  const userId = userObject.id;
+
+  const fetchTasks = () => {
+    getTaskByUserId(userId).then((data) => {
+      setUserTasks(data);
+    });
+  };
 
   useEffect(() => {
     getUserById(userObject.id).then((data) => {
       setUser(data);
     });
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
-    getTaskByUserId(userObject.id).then((data) => {
-      setUserTasks(data);
-    });
-  }, []);
+    fetchTasks()
+  }, [userId]);
 
   const uncompletedTask = userTasks.filter((task) => !task.completedStatus);
   const uncompletedCount = uncompletedTask.length;
@@ -69,7 +77,7 @@ export const Home = () => {
           </div>
           <div className="taskField">
             <p className="taskData">{getTaskCountMessage()}</p>
-            <TaskList userTasks={userTasks} setUserTasks={setUserTasks} />
+            <TaskList userTasks={userTasks} setUserTasks={setUserTasks} onTaskCompletionChange={fetchTasks}/>
           </div>
           <section className="buttons-container">
             <ViewStats />

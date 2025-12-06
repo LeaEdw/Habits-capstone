@@ -97,6 +97,22 @@ h1 {
 }
 
 .angle-button {
-    background-color: transparent;
-    
+  background-color: transparent;
+}
+
+.selectEachTask:hover {
+  color: #1f48d1;
+}
+.left-sideItems {
+  display: flex;
+  flex-direction: column;
+  margin: 5rem;
+  border: 1px solid var(--outline);
+  border-radius: 10px;
+  padding: 1rem 0rem 0rem 1rem;
+  background-color: var(--offWhite);
+  border: 1px solid #ccc;
+
+  padding: 2rem;
+  width: 350px;
 }

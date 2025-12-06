@@ -6,7 +6,7 @@ export const EditTaskButton = () => {
   return (
     <>
       <Link to={"/edit_post"}>
-        <button className="editTask-btn home-btn">Edit Existing Task</button>
+        <button className="editTask-btn home-btn">Edit Existing Tasks</button>
       </Link>
     </>
   );
