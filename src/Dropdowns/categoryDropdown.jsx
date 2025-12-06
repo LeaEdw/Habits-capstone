@@ -39,7 +39,7 @@ export const CategoryDropdown = ({ setSelectedCategoryId, onChange }) => {
         {category.map((categoryObject) => {
           return (
             <option key={categoryObject.id} value={categoryObject.id}>
-              {categoryObject.categoryName}
+              {categoryObject.category}
             </option>
           );
         })}

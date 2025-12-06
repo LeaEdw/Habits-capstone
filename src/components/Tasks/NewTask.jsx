@@ -18,6 +18,7 @@ export const NewTask = () => {
     taskName: "",
     userTaskListId: 0,
     categoryId: 0,
+    dateCreated: "",
     dateCompleted: "",
     completedStatus: false,
     userId: 0,
@@ -72,7 +73,7 @@ export const NewTask = () => {
     }
     const newTask = {
       ...task,
-      dateCompleted: new Date(),
+      dateCreated: new Date().toISOString(),
     };
     createTask(newTask).then(() => {
       navigate("/home");

@@ -6,6 +6,7 @@ export const Logout = () => {
     return (
         <>
             <button
+            className="home-btn"
                 onClick={() => {
                     localStorage.removeItem("habits_user");
                     navigate("/", {replace: true})
