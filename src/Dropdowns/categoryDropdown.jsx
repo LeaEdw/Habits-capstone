@@ -2,7 +2,7 @@ import "./Dropdowns.css";
 import { useEffect, useState } from "react";
 import { getTaskCategory } from "../services/categoryFetcher";
 
-export const CategoryDropdown = ({ setSelectedCategoryId, onChange }) => {
+export const CategoryDropdown = ({ value, onChange }) => {
   const [category, setCategory] = useState([]);
 
   useEffect(() => {
@@ -20,10 +20,8 @@ export const CategoryDropdown = ({ setSelectedCategoryId, onChange }) => {
   const handleCategoryChange = (event) => {
     const categoryId = parseInt(event.target.value);
 
-    if (setSelectedCategoryId) {
-      setSelectedCategoryId(categoryId);
-    } else if (onChange) {
-      onChange(event);
+    if (onChange) {
+      onChange(categoryId);
     }
   };
 
@@ -33,9 +31,11 @@ export const CategoryDropdown = ({ setSelectedCategoryId, onChange }) => {
         className="categories-dropdown"
         onChange={handleCategoryChange}
         name="categoryId"
-        defaultValue={0}
+        value={value}
       >
-        <option value={0} disabled hidden>Select a category</option>
+        <option value={0} disabled>
+          Select a category
+        </option>
         {category.map((categoryObject) => {
           return (
             <option key={categoryObject.id} value={categoryObject.id}>

@@ -24,3 +24,12 @@ export const updateTask = async (task) => {
     body: JSON.stringify(task),
   });
 };
+
+export const deleteTask = async (taskId) => {
+  const response = await fetch(`http://localhost:8088/task/${taskId}`, {
+    method: "DELETE",
+  });
+    if (!response.ok) {
+        throw new Error (`Failed to delete post. Status: ${response.status}`)
+    }
+}

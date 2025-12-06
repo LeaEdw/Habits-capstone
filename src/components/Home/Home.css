@@ -11,47 +11,45 @@
 .taskData {
   padding-top: 20px;
 }
-.left-sideItems > .welcomeProgress {
+.left-sideItems {
   display: flex;
   flex-direction: column;
-  margin: 5rem;
   border: 1px solid var(--outline);
   border-radius: 10px;
-  padding: 1rem 0rem 0rem 1rem;
-  box-shadow: 1px 2px 5px lightgray;
   background-color: var(--offWhite);
   padding: 2rem;
-  width: 350px;
+}
+
+.welcomeProgress {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color: var(--offWhite);
+  padding: 3rem;
 }
 
 .taskList-container {
   display: flex;
   flex-direction: column;
   margin: 5rem;
-  border: 1px solid var(--outline);
+  border: 1px solid #ccc;
   border-radius: 10px;
   padding: 1rem 1rem 1rem 1rem;
-  box-shadow: 1px 2px 5px lightgray;
   background-color: var(--offWhite);
 }
 
 .tasktab-container {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--outline);
+  border: 1px solid #ccc;
   border-radius: 10px;
-  box-shadow: 1px 2px 5px lightgray;
   background-color: var(--offWhite);
 }
 
-.left-sideItems {
-  display: flex;
-  flex-direction: column;
-}
 
 .buttons-container {
   display: flex;
   flex-direction: column;
-  margin: auto;
   padding: 2rem;
 }

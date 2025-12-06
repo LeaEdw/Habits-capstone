@@ -1,23 +1,28 @@
-.save-btn {
+.home-btn {
   /* Layout and Sizing */
   padding: 10px 20px;
   min-width: 120px;
-  
+  margin-top: 15px;
+
   /* Appearance */
-  background-color: #007bff; /* Primary Blue */
-  color: white;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  
+
   /* Text */
   font-size: 16px;
   font-weight: 600;
   text-align: center;
   text-transform: uppercase;
-  
+
   /* Transitions for smooth interaction */
   transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.save-btn {
+  background-color: #007bff; /* Primary Blue */
+  color: white;
+  min-width: 120px;
 }
 
 .save-btn:hover {
@@ -34,7 +39,26 @@
   cursor: not-allowed;
 }
 
+.delete-btn {
+  background-color: #c64040; /* Primary Blue */
+  color: white;
+  min-width: 120px;
+}
+.delete-btn:hover {
+  background-color: #ba3333; /* Darker blue on hover */
+}
+
+.delete-btn:active {
+  background-color: #ab2323; /* Even darker on click */
+  transform: translateY(1px); /* Little press down effect */
+}
+
+.delete-btn:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
 .home-btn {
-    border-radius: 25px;
-    margin: auto;
+  border-radius: 10px;
+  padding: 15px;
 }
