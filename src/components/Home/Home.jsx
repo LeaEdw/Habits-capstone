@@ -11,10 +11,12 @@ import { ViewStats } from "../Buttons/ViewStatsButton";
 import { TaskList } from "../Tasks/TaskList";
 import { getTaskByUserId } from "../../services/taskFetcher";
 import { TaskTab } from "../Tasks/TaskTab";
+import { ToggleDeleteButton } from "../Buttons/ToggleDelete";
 
 export const Home = () => {
   const [user, setUser] = useState([]);
   const [userTasks, setUserTasks] = useState([]);
+  const [isEditing, setIsEditing] = useState(false);
 
   const userObject = JSON.parse(localStorage.getItem("habits_user"));
   const userId = userObject.id;
@@ -25,6 +27,10 @@ export const Home = () => {
     });
   };
 
+  const toggleEdit = () => {
+    setIsEditing(!isEditing);
+  };
+
   useEffect(() => {
     getUserById(userObject.id).then((data) => {
       setUser(data);
@@ -32,7 +38,7 @@ export const Home = () => {
   }, [userId]);
 
   useEffect(() => {
-    fetchTasks()
+    fetchTasks();
   }, [userId]);
 
   const uncompletedTask = userTasks.filter((task) => !task.completedStatus);
@@ -77,10 +83,19 @@ export const Home = () => {
           </div>
           <div className="taskField">
             <p className="taskData">{getTaskCountMessage()}</p>
-            <TaskList userTasks={userTasks} setUserTasks={setUserTasks} onTaskCompletionChange={fetchTasks}/>
+            <TaskList
+              userTasks={userTasks}
+              setUserTasks={setUserTasks}
+              onTaskCompletionChange={fetchTasks}
+              isEditing={isEditing}
+            />
           </div>
           <section className="buttons-container">
             <ViewStats />
+            <ToggleDeleteButton 
+              isEditing={isEditing}
+              onToggle={toggleEdit}
+              />
           </section>
           {/* <button className="edit-lists"></button> */}
         </section>

@@ -1,21 +1,14 @@
 .home-btn {
-  /* Layout and Sizing */
   padding: 10px 20px;
   min-width: 120px;
   margin-top: 15px;
-
-  /* Appearance */
   border: none;
   border-radius: 8px;
   cursor: pointer;
-
-  /* Text */
   font-size: 16px;
   font-weight: 600;
   text-align: center;
   text-transform: uppercase;
-
-  /* Transitions for smooth interaction */
   transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
@@ -61,4 +54,10 @@
 .home-btn {
   border-radius: 10px;
   padding: 15px;
+}
+
+.delete-icon {
+  background-color: transparent;
+  padding: 0;
+  color: #c64040;
 }
