@@ -66,18 +66,27 @@ h1 {
   background-color: #5a6268;
 }
 
-.tasklist-container {
-  width: 350px;
+.task-item {
+  display: flex;
+  width: 100%;
   padding: 12px 15px;
   border: 1px solid #ccc;
   border-radius: 15px;
   font-size: 16px;
   box-sizing: border-box;
-  text-align: left;
+  margin-bottom: 10px;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.task-content-wrapper {
+  display: flex;
+  padding: 0;
 }
 
 .task-text {
-  padding-left: 10px;
+  flex-grow: 1;
+  margin-left: 10px;
 }
 
 .task-edit {
@@ -112,7 +121,17 @@ h1 {
   padding: 1rem 0rem 0rem 1rem;
   background-color: var(--offWhite);
   border: 1px solid #ccc;
-
   padding: 2rem;
   width: 350px;
+}
+
+.delete-icon-button {
+  display: flex;
+  flex-shrink: 0;
+  margin-left: 15px;
+}
+
+.delete-icon-button.visible {
+  visibility: hidden;
+  opacity: 1;
 }
