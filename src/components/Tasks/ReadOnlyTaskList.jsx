@@ -24,7 +24,7 @@ export const EditTaskList = ({ onTaskSelect, refreshTrigger }) => {
     <div className="tasklist-container">
       {selectTask.map((taskObject) => {
         return (
-          <div className="eachTask" key={taskObject.id}>
+          <div className="task-item" key={taskObject.id}>
             <input
               type="checkbox"
               id={`task-${taskObject.id}`}
@@ -34,7 +34,6 @@ export const EditTaskList = ({ onTaskSelect, refreshTrigger }) => {
               className="task-edit"
             />
             <label
-              htmlFor={`task-${taskObject.id}`}
               className="task-text selectEachTask"
               onClick={() => handleTaskSelection(taskObject.id)}
             >

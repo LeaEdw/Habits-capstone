@@ -3,7 +3,7 @@ import { CancelButton } from "../Buttons/CancelButton";
 import { UpdateButton } from "../Buttons/SaveButtons";
 import { EditTaskList } from "./ReadOnlyTaskList";
 import { deleteTask, updateTask } from "../../services/taskFetcher";
-import { CategoryDropdown } from "../../Dropdowns/categoryDropdown";
+import { CategoryDropdown } from "../Dropdowns/categoryDropdown";
 import { TaskTab } from "./TaskTab";
 import { useNavigate } from "react-router-dom";
 import { DeleteButton } from "../Buttons/DeleteButton";

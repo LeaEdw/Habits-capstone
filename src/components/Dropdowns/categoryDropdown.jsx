@@ -1,6 +1,6 @@
 import "./Dropdowns.css";
 import { useEffect, useState } from "react";
-import { getTaskCategory } from "../services/categoryFetcher";
+import { getTaskCategory } from "../../services/categoryFetcher";
 
 export const CategoryDropdown = ({ value, onChange }) => {
   const [category, setCategory] = useState([]);

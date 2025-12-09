@@ -3,12 +3,12 @@ import "./Task.css"
 
 // All other imports:
 import { useEffect, useState } from "react";
-import { CategoryDropdown } from "../../Dropdowns/categoryDropdown";
 import { CancelButton } from "../Buttons/CancelButton";
 import { SaveButton } from "../Buttons/SaveButtons";
 import { createTask } from "../../services/taskFetcher";
 import { getUserById } from "../../services/userService";
 import { useNavigate } from "react-router-dom";
+import {CategoryDropdown} from "../Dropdowns/categoryDropdown"
 
 
 
