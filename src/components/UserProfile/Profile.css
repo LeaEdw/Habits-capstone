@@ -1,0 +1,45 @@
+.allContainers {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+.allContainers > * {
+  margin: 2rem;
+}
+
+.theDots {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto;
+}
+
+.stat-container {
+  width: 100%;
+  max-width: 500px;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.statistics-Title {
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 50px;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.data-text {
+  color: #aaaaaa;
+}
+
+.progress-bar {
+  height: 2rem;
+  width: 400px;
+  border-radius: 20px;
+}
