@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Route, Routes, Outlet } from "react-router-dom";
 import { Home } from "../Home/Home";
-import { UserStatistics } from "../Profile/UserStats";
+import { UserStatistics } from "../UserProfile/UserStats";
 import { NewTask } from "../Tasks/newTask";
 import { EditTask } from "../Tasks/editTask";
+import { UserProfile } from "../UserProfile/Profile";
 
 export const ApplicationViews = () => {
   const [currentUser, setCurrentUser] = useState({});
@@ -20,9 +21,10 @@ export const ApplicationViews = () => {
       <Routes>
         <Route>
           <Route path="/home" element={<Home />} />
-          <Route path="/new_post" element={<NewTask/>} />
-          <Route path="/edit_post" element={<EditTask/>} />
-          <Route path="/user_statistics" element={<UserStatistics/>} />
+          <Route path="/new_post" element={<NewTask />} />
+          <Route path="/edit_post" element={<EditTask />} />
+          <Route path="/user_statistics" element={<UserStatistics />} />
+          <Route path="/profile" element={<UserProfile />} />
         </Route>
       </Routes>
     </>

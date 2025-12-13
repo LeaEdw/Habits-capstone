@@ -18,3 +18,14 @@ export const createUser = async (user) => {
   })
   return await res.json()
 }
+
+export const updateUser = async (user) => {
+  const res = await fetch(`http://localhost:8088/users/${user.id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user)
+  })
+  return await res.json()
+}

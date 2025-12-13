@@ -53,3 +53,7 @@
   flex-direction: column;
   padding: 2rem;
 }
+
+.dailyPercentage {
+  font-size: 72px;
+}

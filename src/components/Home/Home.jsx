@@ -12,10 +12,13 @@ import { TaskList } from "../Tasks/TaskList";
 import { getTaskByUserId } from "../../services/taskFetcher";
 import { TaskTab } from "../Tasks/TaskTab";
 import { ToggleDeleteButton } from "../Buttons/ToggleDelete";
+import { ProgressBar } from "react-bootstrap";
+import { UserIcon } from "../Buttons/ProfileButton";
 
 export const Home = () => {
   const [user, setUser] = useState([]);
   const [userTasks, setUserTasks] = useState([]);
+  const [dailyTasks, setDailyTasks] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
 
   const userObject = JSON.parse(localStorage.getItem("habits_user"));
@@ -41,14 +44,32 @@ export const Home = () => {
     fetchTasks();
   }, [userId]);
 
-  const uncompletedTask = userTasks.filter((task) => !task.completedStatus);
+  useEffect(() => {
+    const getTodayDateString = () => {
+      return new Date().toISOString().slice(0, 10);
+    };
+
+    const todayDate = getTodayDateString();
+
+    const filteredTasks = userTasks.filter((task) => {
+      if (task.dateCreated) {
+        const taskDate = new Date(task.dateCreated).toISOString().slice(0, 10);
+        return taskDate === todayDate;
+      }
+      return false;
+    });
+
+    setDailyTasks(filteredTasks);
+  }, [userTasks]);
+
+  const uncompletedTask = dailyTasks.filter((task) => !task.completedStatus);
   const uncompletedCount = uncompletedTask.length;
 
-  const hasTasks = userTasks.length > 0;
+  const hasTasks = dailyTasks.length > 0;
 
   const getTaskCountMessage = () => {
     if (!hasTasks) {
-      return "It's a bit empty... create a task.";
+      return "No tasks scheduled for today. Create a new one!";
     }
 
     if (uncompletedCount === 0) {
@@ -59,17 +80,43 @@ export const Home = () => {
     return `You have ${uncompletedCount} ${taskWord} to complete.`;
   };
 
+  const getDailyProgress = () => {
+    const allTaskCount = dailyTasks.length;
+    const completedTask = dailyTasks.filter((task) => task.completedStatus);
+    const completedCount = completedTask.length;
+
+    if (allTaskCount === 0) {
+      return 0;
+    }
+    const taskRatio = completedCount / allTaskCount;
+    return taskRatio;
+  };
+
+  const dailyPercentage = () => {
+    const ratio = getDailyProgress();
+    const percentage = ratio * 100;
+
+    return parseFloat(percentage).toFixed(1);
+  };
+
   return (
     <>
       <div className="pageContainer">
         <div className="left-sideItems">
           <section className="welcomeProgress">
-            <h1 className="userGreeting">Hey, {user.username}</h1>
-            <p>
-              {hasTasks
-                ? `Task Data will be here.`
-                : "Psst. Create and complete some tasks to get data."}
-            </p>
+            <div>
+              <h1 className="userGreeting">Hey, {user.username}</h1>
+              <div className="profile-nav-button"><UserIcon /></div>
+            </div>
+            <h3>Current Task Progress: </h3>
+            <div className="dailyPercentage">{dailyPercentage()}%</div>
+            <div>
+              {hasTasks ? (
+                <ProgressBar now={dailyPercentage()} />
+              ) : (
+                "Psst. Create your tasks for today!"
+              )}
+            </div>
           </section>
           <section className="buttons-container">
             <CreateNewButton />
@@ -84,7 +131,7 @@ export const Home = () => {
           <div className="taskField">
             <p className="taskData">{getTaskCountMessage()}</p>
             <TaskList
-              userTasks={userTasks}
+              userTasks={dailyTasks}
               setUserTasks={setUserTasks}
               onTaskCompletionChange={fetchTasks}
               isEditing={isEditing}
@@ -92,10 +139,7 @@ export const Home = () => {
           </div>
           <section className="buttons-container">
             <ViewStats />
-            <ToggleDeleteButton 
-              isEditing={isEditing}
-              onToggle={toggleEdit}
-              />
+            <ToggleDeleteButton isEditing={isEditing} onToggle={toggleEdit} />
           </section>
           {/* <button className="edit-lists"></button> */}
         </section>
