@@ -4,6 +4,7 @@ import { useState } from "react";
 import { TodayStatistics } from "./TodaysProgress";
 import { YesterdayStatistics } from "./YesterdaysProgress";
 import { SevenData } from "./PastSeven";
+import { TwentyEightData } from "./PastTwentyEight";
 
 export const UserStatistics = () => {
   
@@ -21,7 +22,7 @@ export const UserStatistics = () => {
           <SevenData />
         </section>
         <section className="pastTwentyEight">
-            
+            <TwentyEightData />
         </section>
       </div>
 

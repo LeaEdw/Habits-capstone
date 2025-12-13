@@ -12,6 +12,8 @@ import { TaskList } from "../Tasks/TaskList";
 import { getTaskByUserId } from "../../services/taskFetcher";
 import { TaskTab } from "../Tasks/TaskTab";
 import { ToggleDeleteButton } from "../Buttons/ToggleDelete";
+import { ProgressBar } from "react-bootstrap";
+import { UserIcon } from "../Buttons/ProfileButton";
 
 export const Home = () => {
   const [user, setUser] = useState([]);
@@ -50,15 +52,16 @@ export const Home = () => {
     const todayDate = getTodayDateString();
 
     const filteredTasks = userTasks.filter((task) => {
-      if(task.dateCreated) {
+      if (task.dateCreated) {
         const taskDate = new Date(task.dateCreated).toISOString().slice(0, 10);
         return taskDate === todayDate;
       }
-       return false;
-    })
+      return false;
+    });
 
-    setDailyTasks(filteredTasks)
+    setDailyTasks(filteredTasks);
   }, [userTasks]);
+
   const uncompletedTask = dailyTasks.filter((task) => !task.completedStatus);
   const uncompletedCount = uncompletedTask.length;
 
@@ -101,16 +104,19 @@ export const Home = () => {
       <div className="pageContainer">
         <div className="left-sideItems">
           <section className="welcomeProgress">
-            <h1 className="userGreeting">Hey, {user.username}</h1>
+            <div>
+              <h1 className="userGreeting">Hey, {user.username}</h1>
+              <div className="profile-nav-button"><UserIcon /></div>
+            </div>
             <h3>Current Task Progress: </h3>
             <div className="dailyPercentage">{dailyPercentage()}%</div>
-            <p>
+            <div>
               {hasTasks ? (
-                <progress value={getDailyProgress()} />
+                <ProgressBar now={dailyPercentage()} />
               ) : (
                 "Psst. Create your tasks for today!"
               )}
-            </p>
+            </div>
           </section>
           <section className="buttons-container">
             <CreateNewButton />

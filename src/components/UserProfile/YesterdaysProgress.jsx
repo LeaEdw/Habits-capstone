@@ -3,6 +3,7 @@ import "./Profile.css";
 // All other Imports
 import { useEffect, useState } from "react";
 import { getTaskByUserId } from "../../services/taskFetcher";
+import { ProgressBar } from "react-bootstrap";
 
 export const YesterdayStatistics = () => {
   const [userTasks, setUserTasks] = useState([]);
@@ -65,7 +66,7 @@ export const YesterdayStatistics = () => {
     <div className="stat-container">
       <h2 className="data-text">Yesterday</h2>
       <div>{dailyPercentage()}% Completed</div>
-      <progress className="progress-bar" value={getDailyProgress()} max="1"/>
+      <ProgressBar className="stats-progress" now={dailyPercentage()}/>
       <p>({prevDayTasks.filter(task => task.completedStatus).length} / {prevDayTasks.length})</p>
     </div>
   );

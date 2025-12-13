@@ -3,17 +3,44 @@ import "./Task.css";
 import { getTaskByUserId } from "../../services/taskFetcher";
 
 export const EditTaskList = ({ onTaskSelect, refreshTrigger }) => {
+  const [userTasks, setUserTasks] = useState([]);
+  const [dailyTasks, setDailyTasks] = useState([]);
   const [selectTask, setSelectTask] = useState([]);
   const userObject = JSON.parse(localStorage.getItem("habits_user"));
+  const userId = userObject.id;
+
+ const fetchTasks = () => {
+    getTaskByUserId(userId).then((data) => {
+      setUserTasks(data);
+    });
+  };
+
+    useEffect(() => {
+      
+    fetchTasks();
+  }, [userId]);
 
   useEffect(() => {
-    getTaskByUserId(userObject.id).then((data) => {
-      setSelectTask(data);
+    const getTodayDateString = () => {
+      return new Date().toISOString().slice(0, 10);
+    };
+
+    const todayDate = getTodayDateString();
+
+    const filteredTasks = userTasks.filter((task) => {
+      if (task.dateCreated) {
+        const taskDate = new Date(task.dateCreated).toISOString().slice(0, 10);
+        return taskDate === todayDate;
+      }
+      return false;
     });
-  }, [userObject.id, refreshTrigger]);
+
+    setDailyTasks(filteredTasks);
+  }, [userTasks]);
+
 
   const handleTaskSelection = (taskId) => {
-    const selectedTask = selectTask.find((task) => task.id === taskId);
+    const selectedTask = dailyTasks.find((task) => task.id === taskId);
 
     if (selectedTask) {
       onTaskSelect(selectedTask);
@@ -22,7 +49,7 @@ export const EditTaskList = ({ onTaskSelect, refreshTrigger }) => {
 
   return (
     <div className="tasklist-container">
-      {selectTask.map((taskObject) => {
+      {dailyTasks.map((taskObject) => {
         return (
           <div className="task-item" key={taskObject.id}>
             <input

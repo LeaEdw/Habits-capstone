@@ -10,6 +10,7 @@
 .theDots {
   display: grid;
   grid-template-columns: auto auto auto auto auto auto auto;
+  padding: 5px;
 }
 
 .stat-container {
@@ -38,8 +39,15 @@
   color: #aaaaaa;
 }
 
-.progress-bar {
+ .stats-progress {
   height: 2rem;
   width: 400px;
   border-radius: 20px;
+  color: lightseagreen !important;
+
 }
+
+.fa-circle {
+  font-size: 30px;
+}
+

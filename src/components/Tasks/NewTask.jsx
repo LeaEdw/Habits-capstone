@@ -39,7 +39,6 @@ export const NewTask = () => {
             setTask((prevTask) => ({
               ...prevTask,
               userId: user.id,
-              user: user.username,
             }));
           }
         } catch (error) {
