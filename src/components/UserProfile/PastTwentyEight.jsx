@@ -1,5 +1,5 @@
 // CSS Imports
-
+import "./UserStats.css";
 
 // All other Imports// CSS Imports
 import "./Profile.css";

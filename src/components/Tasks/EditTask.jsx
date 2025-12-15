@@ -1,3 +1,6 @@
+// CSS Import 
+import "./Task.css"
+
 import { useState } from "react";
 import { CancelButton } from "../Buttons/CancelButton";
 import { UpdateButton } from "../Buttons/SaveButtons";
@@ -133,7 +136,6 @@ export const EditTask = () => {
             refreshTrigger={refreshTasks}
           />
         </section>
-        <p>Tasks cannot be marked as completed on this page.</p>
       </div>
     </>
   );

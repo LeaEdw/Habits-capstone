@@ -31,16 +31,6 @@
   width: 25em;
 }
 
-.login-btn {
-  align-self: center;
-}
-
-.login-btn:focus {
-  box-shadow: none;
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-}
-
 /************* FORM STYLES *************/
 
 form {
@@ -73,17 +63,6 @@ fieldset {
   margin-right: 1rem;
   display: flex;
   flex-direction: column;
-}
-
-.login-btn {
-  padding: 0.5rem;
-  margin: 1rem;
-}
-
-.login-btn:focus {
-  box-shadow: none;
-  outline: 2px solid transparent;
-  outline-offset: 2px;
 }
 
 input[type="number"] {

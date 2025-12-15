@@ -1,5 +1,5 @@
 // CSS Imports
-import "./Profile.css";
+import "./UserStats.css";
 // All other Imports
 import { useEffect, useState } from "react";
 import { getTaskByUserId } from "../../services/taskFetcher";

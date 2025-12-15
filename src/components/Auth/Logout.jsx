@@ -1,17 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import "./Login.css"
+import { LogoutButton } from "../Buttons/LogoutButton";
 
 export const Logout = () => {
-    const navigate = useNavigate()
     return (
         <>
-            <button
-            className="home-btn"
-                onClick={() => {
-                    localStorage.removeItem("habits_user");
-                    navigate("/", {replace: true})
-                }}
-            >Logout</button>
+          <LogoutButton/>   
         </>
     )
 }

@@ -104,7 +104,7 @@ export const Home = () => {
       <div className="pageContainer">
         <div className="left-sideItems">
           <section className="welcomeProgress">
-            <div>
+            <div className="top-line">
               <h1 className="userGreeting">Hey, {user.username}</h1>
               <div className="profile-nav-button"><UserIcon /></div>
             </div>
@@ -118,7 +118,7 @@ export const Home = () => {
               )}
             </div>
           </section>
-          <section className="buttons-container">
+          <section className="nav-buttons-container">
             <CreateNewButton />
             <EditTaskButton disabled={!hasTasks} />
             <Logout />
@@ -137,7 +137,7 @@ export const Home = () => {
               isEditing={isEditing}
             />
           </div>
-          <section className="buttons-container">
+          <section className="tasklist-buttons-container">
             <ViewStats />
             <ToggleDeleteButton isEditing={isEditing} onToggle={toggleEdit} />
           </section>

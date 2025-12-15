@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Route, Routes, Outlet } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Home } from "../Home/Home";
 import { UserStatistics } from "../UserProfile/UserStats";
 import { NewTask } from "../Tasks/newTask";
