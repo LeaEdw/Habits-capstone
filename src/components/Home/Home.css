@@ -16,11 +16,13 @@
   margin-top: 20px;
   border: 1px solid lightgrey;
   border-radius: 25px;
-  height: fit-content;
+  height: 450px;
 }
 
 .taskData {
   padding-top: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .left-sideItems {
@@ -62,9 +64,10 @@
 
 .nav-buttons-container {
   display: flex;
+  gap: 20px;
   flex-direction: column;
   width: fit-content;
-  margin: 1rem;
+  margin-top: 1.5rem;
 }
 
 .tasklist-buttons-container {

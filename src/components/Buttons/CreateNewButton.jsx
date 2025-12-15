@@ -4,7 +4,7 @@ import "./Button.css"
 export const CreateNewButton = () => {
   return (
     <Link to={"/new_post"}>
-      <button className="cube-btn home-btn">Create a New Task</button>
+      <button className="cube-btn">Create a New Task</button>
     </Link>
   );
 };

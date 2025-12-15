@@ -13,7 +13,7 @@ export const EditTaskButton = ({disabled}) => {
   return (
     <>
       <Link to={"/edit_post"}>
-        <button className="cube-btn home-btn"
+        <button className="cube-btn"
         onClick={handleEdit}
         disabled={disabled}>Edit Existing Tasks</button>
       </Link>

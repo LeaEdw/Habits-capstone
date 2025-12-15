@@ -3,7 +3,7 @@ import "./Button.css";
 export const SaveButton = ({ onClick }) => {
   return (
     <>
-      <button className="save-btn home-btn" onClick={onClick}>
+      <button className="save-btn round-btn" onClick={onClick}>
         Save
       </button>
     </>
@@ -18,7 +18,7 @@ export const UpdateButton = ({ onClick }) => {
   };
   return (
     <>
-      <button className="save-btn home-btn" onClick={handleUpdate}>
+      <button className="save-btn round-btn" onClick={handleUpdate}>
         Update
       </button>
     </>

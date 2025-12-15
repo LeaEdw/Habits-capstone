@@ -1,8 +1,19 @@
 .cube-btn {
-  width: 400px;
+  padding: 15px;
+  margin: 0.5rem;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  height: 75px;
+  width: 350px;
 }
 
-.home-btn {
+.round-btn {
   padding: 15px;
   margin: 0.5rem;
   border: none;
@@ -14,6 +25,7 @@
   text-transform: uppercase;
   transition: background-color 0.2s ease, transform 0.1s ease;
   width: 150px;
+  align-self: center;
 }
 
 .save-btn {
@@ -71,5 +83,3 @@
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
-
-

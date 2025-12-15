@@ -5,7 +5,7 @@ export const LogoutButton = () => {
     const navigate = useNavigate();
   return (
     <button
-      className="home-btn"
+      className="round-btn"
       onClick={() => {
         localStorage.removeItem("habits_user");
         navigate("/", { replace: true });
