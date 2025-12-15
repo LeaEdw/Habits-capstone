@@ -48,27 +48,31 @@ export const EditTaskList = ({ onTaskSelect, refreshTrigger }) => {
   };
 
   return (
-    <div className="tasklist-container">
-      {dailyTasks.map((taskObject) => {
-        return (
-          <div className="task-item" key={taskObject.id}>
-            <input
-              type="checkbox"
-              id={`task-${taskObject.id}`}
-              name="task"
-              checked={taskObject.completedStatus}
-              readOnly
-              className="task-edit"
-            />
-            <label
-              className="task-text selectEachTask"
-              onClick={() => handleTaskSelection(taskObject.id)}
-            >
-              {taskObject.taskName}
-            </label>
-          </div>
-        );
-      })}
+    <div className="edit-overflow">
+      <div className="tasklist-container">
+        <div className="task-field">
+          {dailyTasks.map((taskObject) => {
+            return (
+              <div className="task-item" key={taskObject.id}>
+                <input
+                  type="checkbox"
+                  id={`task-${taskObject.id}`}
+                  name="task"
+                  checked={taskObject.completedStatus}
+                  readOnly
+                  className="task-edit"
+                />
+                <label
+                  className="task-text selectEachTask"
+                  onClick={() => handleTaskSelection(taskObject.id)}
+                >
+                  {taskObject.taskName}
+                </label>
+              </div>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 };

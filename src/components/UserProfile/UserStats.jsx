@@ -1,16 +1,15 @@
-import { Link } from "react-router-dom";
-import { TaskDropDown } from "../Dropdowns/taskDropdowns";
-import { useState } from "react";
+import "./UserStats.css";
+
 import { TodayStatistics } from "./TodaysProgress";
 import { YesterdayStatistics } from "./YesterdaysProgress";
 import { SevenData } from "./PastSeven";
 import { TwentyEightData } from "./PastTwentyEight";
+import { GoBackButton } from "../Buttons/GoBackButton";
 
 export const UserStatistics = () => {
-  
   return (
     <>
-    <h1 className="statistics-Title">Task Completion Data</h1>
+      <h1 className="statistics-Title">Task Completion Data</h1>
       <div className="allContainers">
         <section className="todays-stats">
           <TodayStatistics />
@@ -22,13 +21,11 @@ export const UserStatistics = () => {
           <SevenData />
         </section>
         <section className="pastTwentyEight">
-            <TwentyEightData />
+          <TwentyEightData />
         </section>
       </div>
 
-      <Link to="/home">
-        <button>Go Back</button>
-      </Link>
+      <GoBackButton />
     </>
   );
 };

@@ -3,7 +3,7 @@ import "./Button.css";
 export const ToggleDeleteButton = ({ isEditing, onToggle }) => {
   return (
     <>
-      <button className="home-btn" onClick={onToggle}>
+      <button className="round-btn" onClick={onToggle}>
         {isEditing ? "Done Editing" : "Edit List"}
       </button>
     </>

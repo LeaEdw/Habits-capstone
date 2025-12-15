@@ -47,7 +47,7 @@ export const TaskList = ({ userTasks, onTaskCompletionChange, isEditing }) => {
   };
 
   return (
-    <div className="tasklist-container">
+    <div className="overflow">
       {userTasks.map((taskObject) => {
         return (
           <div key={taskObject.id} className="task-item">

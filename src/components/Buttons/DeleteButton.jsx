@@ -9,7 +9,7 @@ export const DeleteButton = ({ onClick }) => {
   };
   return (
     <>
-      <button className="delete-btn home-btn" onClick={handleDelete}>
+      <button className="delete-btn round-btn" onClick={handleDelete}>
         Delete
       </button>
     </>

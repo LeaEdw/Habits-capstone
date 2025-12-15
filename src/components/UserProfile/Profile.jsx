@@ -1,11 +1,13 @@
 //CSS Imports
-import { Link, useNavigate } from "react-router-dom";
 import "./Profile.css";
-import { SaveButton } from "../Buttons/SaveButtons";
-import { useEffect, useState } from "react";
-import { getUserById, updateUser } from "../../services/userService";
+import "../Buttons/Button.css"
 
 // All other imports
+import { Link, useNavigate } from "react-router-dom";
+import { SaveButton, UpdateButton } from "../Buttons/SaveButtons";
+import { useEffect, useState } from "react";
+import { getUserById, updateUser } from "../../services/userService";
+import { GoBackButton } from "../Buttons/GoBackButton";
 
 const initialEditState = {
   id: 0,
@@ -81,7 +83,6 @@ export const UserProfile = () => {
                 id="username"
                 value={infoToEdit.username}
                 required
-                autoFocus
               />
               <label htmlFor="username">Username</label>
             </div>
@@ -93,7 +94,6 @@ export const UserProfile = () => {
                 id="email"
                 value={infoToEdit.email}
                 required
-                autoFocus
               />
               <label htmlFor="user-email">Email Address</label>
             </div>
@@ -106,7 +106,6 @@ export const UserProfile = () => {
                 value={infoToEdit.phoneNumber}
                 required
                 maxLength="12"
-                autoFocus
               />
               <label htmlFor="phoneNumber">Phone Number</label>
             </div>
@@ -118,18 +117,15 @@ export const UserProfile = () => {
                 id="birthdate"
                 value={infoToEdit.birthdate}
                 required
-                autoFocus
               />
               <label htmlFor="birthdate">Birthdate</label>
             </div>
           </div>
         </fieldset>
       </div>
-      <div>
-        <Link to="/home">
-          <button>Go Back</button>
-        </Link>
-        <SaveButton onClick={editExistingUser} />
+      <div className="buttons-container">
+        <GoBackButton/>
+        <UpdateButton onClick={editExistingUser} />
       </div>
     </>
   );

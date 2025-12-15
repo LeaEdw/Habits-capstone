@@ -1,6 +1,9 @@
 .pageContainer {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .userGreeting {
   font-size: 2rem;
@@ -8,33 +11,45 @@
   text-align: left;
 }
 
+.taskField {
+  padding: 10px;
+  margin-top: 20px;
+  border: 1px solid lightgrey;
+  border-radius: 25px;
+  height: 450px;
+}
+
 .taskData {
   padding-top: 20px;
+  display: flex;
+  justify-content: center;
 }
+
 .left-sideItems {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--outline);
-  border-radius: 10px;
-  background-color: var(--offWhite);
-  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .welcomeProgress {
   display: flex;
   flex-direction: column;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 20px;
   background-color: var(--offWhite);
-  padding: 3rem;
+  padding: 2.5rem;
 }
 
 .taskList-container {
-  display: flex;
+  display: inline-block;
+  width: 450px;
+  max-height: 1000px;
   flex-direction: column;
   margin: 5rem;
   border: 1px solid #ccc;
-  border-radius: 10px;
+  border-radius: 20px;
   padding: 1rem 1rem 1rem 1rem;
   background-color: var(--offWhite);
 }
@@ -47,13 +62,28 @@
   background-color: var(--offWhite);
 }
 
-
-.buttons-container {
+.nav-buttons-container {
   display: flex;
+  gap: 20px;
   flex-direction: column;
-  padding: 2rem;
+  width: fit-content;
+  margin-top: 1.5rem;
+}
+
+.tasklist-buttons-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 1rem;
+  max-height: 500px;
 }
 
 .dailyPercentage {
   font-size: 72px;
+}
+
+.top-line {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
 }

@@ -1,5 +1,6 @@
 // Imports
 import "./Login.css"
+import "../Buttons/Button.css"
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { getUserByEmail } from "../../services/userService"
