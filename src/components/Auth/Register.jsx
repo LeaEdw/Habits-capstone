@@ -1,6 +1,9 @@
+// CSS Styling Import
+import "../Buttons/Button.css"
+import "./Login.css";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
 import { createUser, getUserByEmail } from "../../services/userService";
 
 export const Register = () => {
@@ -26,7 +29,7 @@ export const Register = () => {
           })
         );
 
-        navigate("/");
+        navigate("/home");
       }
     });
   };
@@ -94,7 +97,7 @@ export const Register = () => {
             />
           </div>
         </fieldset>
-        <fieldset>
+        <fieldset className="form-group">
           <div>
             <input
               className="form-control"
@@ -107,8 +110,8 @@ export const Register = () => {
         </fieldset>
         <fieldset className="form-group">
           <div>
-            <button type="submit" className="btn-secondary">
-              Save and Login
+            <button type="submit" className="round-btn">
+              Submit
             </button>
           </div>
         </fieldset>
