@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+// CSS Styling
 import "./Task.css";
+
+// Imports
+import { useEffect, useState } from "react";
 import { getTaskByUserId } from "../../services/taskFetcher";
 
-export const EditTaskList = ({ onTaskSelect, refreshTrigger }) => {
+export const EditTaskList = ({ onTaskSelect }) => {
   const [userTasks, setUserTasks] = useState([]);
   const [dailyTasks, setDailyTasks] = useState([]);
-  const [selectTask, setSelectTask] = useState([]);
   const userObject = JSON.parse(localStorage.getItem("habits_user"));
   const userId = userObject.id;
 
@@ -21,9 +23,7 @@ export const EditTaskList = ({ onTaskSelect, refreshTrigger }) => {
   }, [userId]);
 
   useEffect(() => {
-    // const getTodayDateString = () => {
-    //   return new Date().toISOString().slice(0, 10);
-    // };
+  
     const getLocalDateString = (date) => {
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, "0");

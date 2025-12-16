@@ -45,9 +45,6 @@ export const Home = () => {
   }, [userId]);
 
   useEffect(() => {
-    // const getTodayDateString = () => {
-    //   return new Date().toISOString().slice(0, 10);
-    // };
     const getLocalDateString = (date) => {
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, "0");
