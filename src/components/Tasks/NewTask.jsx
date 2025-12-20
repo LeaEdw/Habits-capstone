@@ -1,5 +1,5 @@
-// CSS import: 
-import "./Task.css"
+// CSS import:
+import "./Task.css";
 
 // All other imports:
 import { useEffect, useState } from "react";
@@ -8,21 +8,26 @@ import { SaveButton } from "../Buttons/SaveButtons";
 import { createTask } from "../../services/taskFetcher";
 import { getUserById } from "../../services/userService";
 import { useNavigate } from "react-router-dom";
-import {CategoryDropdown} from "../Dropdowns/categoryDropdown"
+import { CategoryDropdown } from "../Dropdowns/categoryDropdown";
+import { CreateMoreButton } from "../Buttons/CreateNewButton";
+import { UrgencyDropdown } from "../Dropdowns/UrgencyLevel";
+import { TimeOfDayDropdown } from "../Dropdowns/TimeOfDay";
 
-
+const initialTaskState = {
+  taskName: "",
+  userTaskListId: 0,
+  categoryId: 0,
+  urgencyId: 0,
+  timeOfDayId: 0,
+  dateCreated: "",
+  dateCompleted: "",
+  completedStatus: false,
+  userId: 0,
+};
 
 export const NewTask = () => {
   const navigate = useNavigate();
-  const [task, setTask] = useState({
-    taskName: "",
-    userTaskListId: 0,
-    categoryId: 0,
-    dateCreated: "",
-    dateCompleted: "",
-    completedStatus: false,
-    userId: 0,
-  });
+  const [task, setTask] = useState(initialTaskState);
 
   useEffect(() => {
     const habitsUser = localStorage.getItem("habits_user");
@@ -62,8 +67,20 @@ export const NewTask = () => {
     setTask((prevTask) => ({
       ...prevTask,
       categoryId: newCategoryId,
-    }))
-  }
+    }));
+  };
+  const handleUrgencyChange = (newUrgencyId) => {
+    setTask((prevTask) => ({
+      ...prevTask,
+      urgencyId: newUrgencyId,
+    }));
+  };
+  const handleTimeOfDayChange = (newTimeOfDayId) => {
+    setTask((prevTask) => ({
+      ...prevTask,
+      timeOfDayId: newTimeOfDayId,
+    }));
+  };
 
   const createNewTask = (e) => {
     e.preventDefault();
@@ -86,6 +103,22 @@ export const NewTask = () => {
     });
   };
 
+  const createMoreTask = (e) => {
+    e.preventDefault();
+
+    const newTask = {
+      ...task,
+      dateCreated: new Date().toISOString(),
+    };
+
+    createTask(newTask).then(() => {
+      setTask((prevTask) => ({
+        ...initialTaskState,
+        userId: prevTask.userId,
+      }));
+    });
+  };
+
   return (
     <>
       <h1>Create a New Task</h1>
@@ -101,11 +134,25 @@ export const NewTask = () => {
             required
           />
         </fieldset>
-        <CategoryDropdown value={task.categoryId} onChange={handleCategoryChange}  />
+        <CategoryDropdown
+          value={task.categoryId}
+          onChange={handleCategoryChange}
+        />
+        <div className="doubled-dropdowns">
+          <UrgencyDropdown
+            value={task.urgencyId}
+            onChange={handleUrgencyChange}
+          />
+          <TimeOfDayDropdown
+            value={task.timeOfDayId}
+            onChange={handleTimeOfDayChange}
+          />
+        </div>
       </div>
       <div className="button-group">
-          <CancelButton />
-          <SaveButton onClick={createNewTask} />
+        <CancelButton />
+        <CreateMoreButton onClick={createMoreTask} />
+        <SaveButton onClick={createNewTask} />
       </div>
     </>
   );

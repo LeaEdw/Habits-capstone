@@ -17,8 +17,17 @@ const getLastSevenDates = () => {
   const dates = [];
   for (let i = 6; i >= 0; i--) {
     const d = new Date();
-    d.setDate(d.getDate() - i);
+    d.setDate(d.getDate() -i);
     dates.push(getFormattedDate(d));
+    // const d = new Date(
+    //   Date.UTC(today.getFullYear(), today.getMonth(), today.getDate() - i)
+    // );
+
+    // const year = d.getUTCFullYear();
+    // const month = String(d.getUTCMonth() + 1).padStart(2, "0");
+    // const day = String(d.getUTCDate()).padStart(2, "0");
+
+    // dates.push(`${year}-${month}-${day}`);
   }
 
   return dates;
@@ -46,18 +55,20 @@ export const SevenData = () => {
     fetchTasks();
   }, [userId]);
 
-  const now = new Date();
-  const sevenDaysInMS = 7 * 24 * 60 * 60 * 1000;
-  const sevenDaysAgoTimestamp = now.getTime() - sevenDaysInMS;
+  const today = new Date();
+  const sixDaysAgo = new Date(today);
+  
+  sixDaysAgo.setDate(today.getDate() - 6);
+  sixDaysAgo.setHours(0, 0, 0, 0);
+  
+  const rangeStartTimeStamp = sixDaysAgo.getTime();
 
   const filteredTasks = userTasks.filter((item) => {
     const itemDate = new Date(item.dateCreated);
     const itemTimestamp = itemDate.getTime();
 
-    const isRecent = itemTimestamp >= sevenDaysAgoTimestamp;
-    const isNotFuture = itemTimestamp <= now.getTime();
-
-    return isRecent && isNotFuture;
+    return itemTimestamp >= rangeStartTimeStamp
+   
   });
   // Calculate the percentage of tasks completed for each day
   // For each day find the rate of tasks completed: complete task / total task for the given day
@@ -135,7 +146,7 @@ export const SevenData = () => {
       acc[dateKey] = { total: 0, completed: 0 };
     }
     acc[dateKey].total += 1;
-    if (task.completed) {
+    if (task.completedStatus) {
       acc[dateKey].completed += 1;
     }
     return acc;

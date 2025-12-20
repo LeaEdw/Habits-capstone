@@ -23,20 +23,25 @@ export const YesterdayStatistics = () => {
   }, [userId]);
 
   useEffect(() => {
-    const getPrevDayDateString = () => {
-      const date = new Date();
+    const getYesterdayDateString = () => {
+      const d = new Date();
+      d.setDate(d.getDate() -1)
 
-      date.setDate(date.getDate() - 1);
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
 
-      return date.toISOString().slice(0, 10);
+      return `${year}-${month}-${day}`;
     };
 
-    const prevDayDateString = getPrevDayDateString();
+    const yesterdayDateString = getYesterdayDateString();
 
     const filteredTasks = userTasks.filter((task) => {
       if (task.dateCreated) {
-        const taskDateString = new Date(task.dateCreated).toISOString().slice(0, 10);
-        return taskDateString === prevDayDateString;
+
+        const taskDateString = new Date(task.dateCreated).toLocaleDateString('en-CA');
+
+        return taskDateString === yesterdayDateString;
       }
       return false;
     });
@@ -60,14 +65,17 @@ export const YesterdayStatistics = () => {
     const ratio = getDailyProgress();
     const percentage = ratio * 100;
 
-    return parseFloat(percentage).toFixed(1);
+    return parseFloat(percentage).toFixed(1);;
   };
   return (
     <div className="stat-container">
       <h2 className="data-text">Yesterday</h2>
       <div>{dailyPercentage()}% Completed</div>
-      <ProgressBar className="stats-progress" now={dailyPercentage()}/>
-      <p>({prevDayTasks.filter(task => task.completedStatus).length} / {prevDayTasks.length})</p>
+      <ProgressBar className="stats-progress" now={dailyPercentage()} />
+      <p>
+        ({prevDayTasks.filter((task) => task.completedStatus).length} /{" "}
+        {prevDayTasks.length})
+      </p>
     </div>
   );
 };

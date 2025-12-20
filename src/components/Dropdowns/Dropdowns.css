@@ -1,4 +1,4 @@
-.categories-dropdown {
+.wide-dropdown {
   background-color: #dedede;
   color: rgb(0, 0, 0);
   padding: 16px;
@@ -9,7 +9,18 @@
   width: 450px;
   text-align: center;
 }
+.small-dropdown {
+  background-color: #dedede;
+  color: rgb(0, 0, 0);
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 25px;
+  width: 200px;
+  text-align: center;
+}
 
 select {
-    text-align: center;
+  text-align: center;
 }

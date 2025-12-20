@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./Task.css";
 
 export const TaskTab = () => {
@@ -7,7 +6,7 @@ export const TaskTab = () => {
       <button className="angle-button">
         <i className="fa-solid fa-angle-left"></i>
       </button>
-      <h2>Tasklist</h2>
+      <h2>Today's Tasks</h2>
       <button className="angle-button">
         <i className="fa-solid fa-angle-right"></i>
       </button>

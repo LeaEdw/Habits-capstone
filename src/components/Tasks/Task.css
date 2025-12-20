@@ -149,3 +149,8 @@ h1 {
   max-height: 375px;
   overflow-y: overlay;
 }
+
+.doubled-dropdowns {
+  display: grid;
+  grid-template-columns: auto auto;
+}

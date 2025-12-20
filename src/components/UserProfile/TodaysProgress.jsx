@@ -61,7 +61,7 @@ export const TodayStatistics = () => {
     const ratio = getDailyProgress();
     const percentage = ratio * 100;
 
-    return Math.round(percentage);
+    return parseFloat(percentage).toFixed(1);
   };
 
   return (

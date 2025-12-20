@@ -28,7 +28,7 @@ export const CategoryDropdown = ({ value, onChange }) => {
   return (
     <div>
       <select
-        className="categories-dropdown"
+        className="wide-dropdown"
         onChange={handleCategoryChange}
         name="categoryId"
         value={value}

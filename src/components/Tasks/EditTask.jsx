@@ -1,5 +1,5 @@
-// CSS Import 
-import "./Task.css"
+// CSS Import
+import "./Task.css";
 
 import { useState } from "react";
 import { CancelButton } from "../Buttons/CancelButton";
@@ -10,11 +10,15 @@ import { CategoryDropdown } from "../Dropdowns/categoryDropdown";
 import { TaskTab } from "./TaskTab";
 import { useNavigate } from "react-router-dom";
 import { DeleteButton } from "../Buttons/DeleteButton";
+import { UrgencyDropdown } from "../Dropdowns/UrgencyLevel";
+import { TimeOfDayDropdown } from "../Dropdowns/TimeOfDay";
 
 const initialEditState = {
   id: 0,
   taskName: "",
   categoryId: 0,
+  urgencyId: 0,
+  timeOfDayId: 0,
 };
 
 export const EditTask = () => {
@@ -35,12 +39,26 @@ export const EditTask = () => {
       categoryId: newCategoryId,
     });
   };
+  const handleUrgencyChange = (newUrgencyId) => {
+    setTaskToEdit({
+      ...taskToEdit,
+      urgencyId: newUrgencyId,
+    });
+  };
+  const handleTimeOfDayChange = (newTimeOfDayId) => {
+    setTaskToEdit({
+      ...taskToEdit,
+      timeOfDayId: newTimeOfDayId,
+    });
+  };
 
   const handleSelectedTask = (taskObject) => {
     setTaskToEdit({
       id: taskObject.id,
       taskName: taskObject.taskName,
       categoryId: taskObject.categoryId,
+      urgencyId: taskObject.urgencyId || 0,
+      timeOfDayId: taskObject.timeOfDayId || 0
     });
   };
 
@@ -84,16 +102,20 @@ export const EditTask = () => {
       alert("Select task to delete.");
     }
 
-    const confirmed = window.confirm("Are you sure you want to delete the selected task?");
+    const confirmed = window.confirm(
+      "Are you sure you want to delete the selected task?"
+    );
 
-    if(!confirmed){return;}
+    if (!confirmed) {
+      return;
+    }
     try {
       await deleteTask(taskToEdit.id);
 
-      setTaskToEdit(initialEditState)
+      setTaskToEdit(initialEditState);
 
       setRefreshTasks((prev) => prev + 1);
-      alert("Task deleted successfully!")
+      alert("Task deleted successfully!");
     } catch (error) {
       "Failed to delete selection:", error;
     }
@@ -118,12 +140,22 @@ export const EditTask = () => {
             <CategoryDropdown
               value={taskToEdit.categoryId}
               onChange={handleCategoryChange}
-            />
+            />{" "}
+            <div className="doubled-dropdowns">
+              <UrgencyDropdown
+                value={taskToEdit.urgencyId}
+                onChange={handleUrgencyChange}
+              />
+              <TimeOfDayDropdown
+                value={taskToEdit.timeOfDayId}
+                onChange={handleTimeOfDayChange}
+              />
+            </div>
           </div>
           <div className="button-group">
             <CancelButton />
             <UpdateButton onClick={editExistingTask} />
-            <DeleteButton onClick={deleteSelectedTask}/>
+            <DeleteButton onClick={deleteSelectedTask} />
           </div>
         </div>
 
