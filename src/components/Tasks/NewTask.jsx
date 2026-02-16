@@ -12,7 +12,6 @@ import { CategoryDropdown } from "../Dropdowns/categoryDropdown";
 import { CreateMoreButton } from "../Buttons/CreateNewButton";
 import { UrgencyDropdown } from "../Dropdowns/UrgencyLevel";
 import { TimeOfDayDropdown } from "../Dropdowns/TimeOfDay";
-import { RecurringDropdown } from "../Dropdowns/recurrenceDropdown";
 
 const initialTaskState = {
   taskName: "",
@@ -24,7 +23,6 @@ const initialTaskState = {
   dateCompleted: "",
   completedStatus: false,
   userId: 0,
-  recurringInterval: "none"
 };
 
 export const NewTask = () => {
@@ -84,12 +82,7 @@ export const NewTask = () => {
     }));
   };
 
-  const handleRecurrenceChange = (newInterval) => {
-    setTask((prevTask) => ({
-      ...prevTask,
-      recurringInterval: newInterval,
-    }));
-  };
+
 
   const createNewTask = (e) => {
     e.preventDefault();
@@ -165,10 +158,6 @@ export const NewTask = () => {
           <TimeOfDayDropdown
             value={task.timeOfDayId}
             onChange={handleTimeOfDayChange}
-          />
-          <RecurringDropdown
-            value={task.recurringInterval}
-            onChange={handleRecurrenceChange}
           />
         </div>
       </div>

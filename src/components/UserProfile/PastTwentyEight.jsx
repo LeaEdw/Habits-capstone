@@ -27,164 +27,278 @@ const getLastTwentyEightDates = () => {
   return dates;
 };
 
-export const TwentyEightData = () => {
-  // Get the data for the past seven days
-  // Establish the date range
-  // Only fetch the data within the date range
+// export const TwentyEightData = () => {
+//   // Get the data for the past seven days
+//   // Establish the date range
+//   // Only fetch the data within the date range
 
+//   const [userTasks, setUserTasks] = useState([]);
+//   const [pastTwentyEightData, setPastTwentyEightData] = useState([]);
+//   const [successfulDays, setSuccessfulDays] = useState(0);
+
+//   const userObject = JSON.parse(localStorage.getItem("habits_user"));
+//   const userId = userObject.id;
+
+//   const fetchTasks = () => {
+//     getTaskByUserId(userId).then((data) => {
+//       setUserTasks(data);
+//     });
+//   };
+
+//   useEffect(() => {
+//     fetchTasks();
+//   }, [userId]);
+
+//   const now = new Date();
+//   const twentyEightDaysInMS = 28 * 24 * 60 * 60 * 1000;
+//   const twentyEightDaysAgoTimestamp = now.getTime() - twentyEightDaysInMS;
+
+//   const filteredTasks = userTasks.filter((item) => {
+//     const itemDate = new Date(item.dateCreated);
+//     const itemTimestamp = itemDate.getTime();
+
+//     const isRecent = itemTimestamp >= twentyEightDaysAgoTimestamp;
+//     const isNotFuture = itemTimestamp <= now.getTime();
+
+//     return isRecent && isNotFuture;
+//   });
+//   // Calculate the percentage of tasks completed for each day
+//   // For each day find the rate of tasks completed: complete task / total task for the given day
+
+//   const pastTwentyEightCompletion = () => {
+//     const tasksByDay = filteredTasks.reduce((acc, task) => {
+//       const dateKey = getFormattedDate(task.dateCreated);
+
+//       if (!acc[dateKey]) {
+//         acc[dateKey] = { total: 0, completed: 0 };
+//       }
+//       acc[dateKey].total += 1;
+//       if (task.completedStatus) {
+//         acc[dateKey].completed += 1;
+//       }
+
+//       return acc;
+//     }, {});
+
+//     const lastTwentyEightDays = getLastTwentyEightDates();
+//     let dailyData = [];
+//     let successfulCount = 0;
+
+//     lastTwentyEightDays.forEach((dateKey) => {
+//       const stats = tasksByDay[dateKey] || { total: 0, completed: 0 };
+//       let percentage = 0;
+
+//       if (stats.total > 0) {
+//         percentage = (stats.completed / stats.total) * 100;
+//       }
+//       if (percentage > 0) {
+//         successfulCount += 1;
+//       }
+//       dailyData.push({
+//         date: dateKey,
+//         percentage: Math.round(percentage),
+//       });
+//     });
+
+//     setPastTwentyEightData(dailyData);
+//     setSuccessfulDays(successfulCount);
+//   };
+
+//   useEffect(() => {
+//     pastTwentyEightCompletion();
+//   }, [userTasks]);
+
+//   // Assign the color for the percentages
+//   // Each color will cover a range 0%
+
+//   const getColorStyle = (percentage) => {
+//     if (percentage === null || percentage === undefined) {
+//       return { backgroundColor: "black" };
+//     }
+
+//     if (percentage === 0) {
+//       return { opacity: 0 };
+//     } else if (percentage > 0 && percentage < 25) {
+//       return { opacity: 0.2 };
+//     } else if (percentage >= 25 && percentage < 50) {
+//       return { opacity: 0.4 };
+//     } else if (percentage >= 50 && percentage < 75) {
+//       return { opacity: 0.6 };
+//     } else if (percentage >= 75 && percentage < 100) {
+//       return { opacity: 0.8 };
+//     } else if (percentage === 100) {
+//       return { opacity: 1.0 };
+//     }
+//   };
+
+//   const tasksByDay = filteredTasks.reduce((acc, task) => {
+//     const dateKey = getFormattedDate(task.dateCreated);
+
+//     if (!acc[dateKey]) {
+//       acc[dateKey] = { total: 0, completed: 0 };
+//     }
+//     acc[dateKey].total += 1;
+//     if (task.completed) {
+//       acc[dateKey].completed += 1;
+//     }
+//     return acc;
+//   }, {});
+
+//   return (
+//     <div className="stat-container">
+//       <div className="text-data">
+//         <h2 className="data-text">Past 28 Days</h2>
+//         <div>{successfulDays}/28</div>
+//         <div className="text">Days</div>
+//       </div>
+//       <div>
+//         <div className="theDots">
+//           {pastTwentyEightData.map((dayData, index) => {
+//             const dayStats = tasksByDay[dayData.date];
+//             const hasTasks = dayStats && dayStats.total > 0;
+
+//             let dotStyle = {};
+//             let circleStyle = {};
+//             if (!hasTasks) {
+//               circleStyle = "fa-regular fa-circle";
+//               dotStyle = { color: "grey" };
+//             } else {
+//               const baseColor = "#0a6bfb";
+//               (circleStyle = "fa-solid fa-circle"),
+//                 (dotStyle = {
+//                   color: baseColor,
+//                   ...getColorStyle(dayData.percentage),
+//                 });
+//             }
+//             return (
+//               <div
+//                 key={index}
+//                 className="eachDot"
+//                 title={`${dayData.date}: ${dayData.percentage}% completed`}
+//               >
+//                 <i className={circleStyle} style={dotStyle}></i>
+//               </div>
+//             );
+//           })}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+export const TwentyEightData = () => {
   const [userTasks, setUserTasks] = useState([]);
   const [pastTwentyEightData, setPastTwentyEightData] = useState([]);
   const [successfulDays, setSuccessfulDays] = useState(0);
 
   const userObject = JSON.parse(localStorage.getItem("habits_user"));
-  const userId = userObject.id;
-
-  const fetchTasks = () => {
-    getTaskByUserId(userId).then((data) => {
-      setUserTasks(data);
-    });
-  };
+  const userId = userObject?.id;
 
   useEffect(() => {
-    fetchTasks();
+    if (userId) {
+      getTaskByUserId(userId).then((data) => setUserTasks(data));
+    }
   }, [userId]);
 
-  const now = new Date();
-  const twentyEightDaysInMS = 28 * 24 * 60 * 60 * 1000;
-  const twentyEightDaysAgoTimestamp = now.getTime() - twentyEightDaysInMS;
+  useEffect(() => {
+    // 1. Filter tasks within the range
+    const now = new Date();
+    const twentyEightDaysAgo = new Date();
+    twentyEightDaysAgo.setDate(now.getDate() - 28);
 
-  const filteredTasks = userTasks.filter((item) => {
-    const itemDate = new Date(item.dateCreated);
-    const itemTimestamp = itemDate.getTime();
+    const filtered = userTasks.filter((item) => {
+      const itemDate = new Date(item.dateCreated);
+      return itemDate >= twentyEightDaysAgo && itemDate <= now;
+    });
 
-    const isRecent = itemTimestamp >= twentyEightDaysAgoTimestamp;
-    const isNotFuture = itemTimestamp <= now.getTime();
-
-    return isRecent && isNotFuture;
-  });
-  // Calculate the percentage of tasks completed for each day
-  // For each day find the rate of tasks completed: complete task / total task for the given day
-
-  const pastTwentyEightCompletion = () => {
-    const tasksByDay = filteredTasks.reduce((acc, task) => {
+    // 2. Group tasks by day
+    const tasksByDay = filtered.reduce((acc, task) => {
       const dateKey = getFormattedDate(task.dateCreated);
+      if (!acc[dateKey]) acc[dateKey] = { total: 0, completed: 0 };
 
-      if (!acc[dateKey]) {
-        acc[dateKey] = { total: 0, completed: 0 };
-      }
       acc[dateKey].total += 1;
-      if (task.completedStatus) {
-        acc[dateKey].completed += 1;
-      }
-
+      if (task.completedStatus) acc[dateKey].completed += 1;
       return acc;
     }, {});
 
+    // 3. Map to the last 28 days
     const lastTwentyEightDays = getLastTwentyEightDates();
-    let dailyData = [];
     let successfulCount = 0;
 
-    lastTwentyEightDays.forEach((dateKey) => {
+    const dailyData = lastTwentyEightDays.map((dateKey) => {
       const stats = tasksByDay[dateKey] || { total: 0, completed: 0 };
-      let percentage = 0;
+      const percentage =
+        stats.total > 0 ? (stats.completed / stats.total) * 100 : null;
 
-      if (stats.total > 0) {
-        percentage = (stats.completed / stats.total) * 100;
-      }
-      if (percentage > 0) {
-        successfulCount += 1;
-      }
-      dailyData.push({
+      if (percentage > 0) successfulCount += 1;
+
+      return {
         date: dateKey,
-        percentage: Math.round(percentage),
-      });
+        percentage: percentage, // null means no tasks, 0 means 0%
+        totalTasks: stats.total,
+      };
     });
 
     setPastTwentyEightData(dailyData);
     setSuccessfulDays(successfulCount);
-  };
-
-  useEffect(() => {
-    pastTwentyEightCompletion();
   }, [userTasks]);
 
-  // Assign the color for the percentages
-  // Each color will cover a range 0%
-
   const getColorStyle = (percentage) => {
-    if (percentage === null || percentage === undefined) {
-      return { backgroundColor: "black" };
-    }
+    if (percentage === null) return { color: "grey", opacity: 0.3 }; // No tasks created
+    if (percentage === 0) return { color: "#0a6bfb", opacity: 0.1 }; // Tasks exist, 0% done
 
-    if (percentage === 0) {
-      return { opacity: 0 };
-    } else if (percentage > 0 && percentage < 25) {
-      return { opacity: 0.2 };
-    } else if (percentage >= 25 && percentage < 50) {
-      return { opacity: 0.4 };
-    } else if (percentage >= 50 && percentage < 75) {
-      return { opacity: 0.6 };
-    } else if (percentage >= 75 && percentage < 100) {
-      return { opacity: 0.8 };
-    } else if (percentage === 100) {
-      return { opacity: 1.0 };
-    }
+    // Scale opacity based on success
+    const opacityMap = [
+      { min: 1, max: 25, op: 0.2 },
+      { min: 25, max: 50, op: 0.4 },
+      { min: 50, max: 75, op: 0.6 },
+      { min: 75, max: 100, op: 0.8 },
+      { min: 100, max: 101, op: 1.0 },
+    ];
+
+    const level = opacityMap.find(
+      (l) => percentage >= l.min && percentage < l.max,
+    );
+    return { color: "#0a6bfb", opacity: level ? level.op : 1.0 };
   };
-
-  const tasksByDay = filteredTasks.reduce((acc, task) => {
-    const dateKey = getFormattedDate(task.dateCreated);
-
-    if (!acc[dateKey]) {
-      acc[dateKey] = { total: 0, completed: 0 };
-    }
-    acc[dateKey].total += 1;
-    if (task.completed) {
-      acc[dateKey].completed += 1;
-    }
-    return acc;
-  }, {});
 
   return (
     <div className="stat-container">
       <div className="text-data">
         <h2 className="data-text">Past 28 Days</h2>
-        <div>{successfulDays}/28</div>
-        <div className="text">Days</div>
+        <div>{successfulDays} / 28 Days</div>
       </div>
-      <div>
-        <div className="theDots">
-          {pastTwentyEightData.map((dayData, index) => {
-            const dayStats = tasksByDay[dayData.date];
-            const hasTasks = dayStats && dayStats.total > 0;
+      <div className="day-labels">
+        <span>S</span>
+        <span>M</span>
+        <span>T</span>
+        <span>W</span>
+        <span>T</span>
+        <span>F</span>
+        <span>S</span>
+      </div>
+      <div className="theDots">
+        {pastTwentyEightData.map((day, index) => {
+          const isPlaceholder = day.percentage === null;
+          const style = getColorStyle(day.percentage);
 
-            let dotStyle = {};
-            let circleStyle = {};
-            if (!hasTasks) {
-              circleStyle = "fa-regular fa-circle";
-              dotStyle = { color: "grey" };
-            } else {
-              const baseColor = "#0a6bfb";
-              (circleStyle = "fa-solid fa-circle"),
-                (dotStyle = {
-                  color: baseColor,
-                  ...getColorStyle(dayData.percentage),
-                });
-            }
-            return (
-              <div
-                key={index}
-                className="eachDot"
-                title={`${dayData.date}: ${dayData.percentage}% completed`}
-              >
-                <i className={circleStyle} style={dotStyle}></i>
-              </div>
-            );
-          })}
-        </div>
+          return (
+            <div
+              key={index}
+              className="eachDot"
+              title={`${day.date}: ${day.totalTasks} tasks`}
+            >
+              <i
+                className={
+                  isPlaceholder ? "fa-regular fa-circle" : "fa-solid fa-circle"
+                }
+                style={style}
+              ></i>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 };
-
 // The Dots will be subject to change. This component will always get the past seven days. The seventh day is the present day and
 // reaches back from day
